@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disneyland Riddle Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 20px;
+        }
+        #riddle {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            font-size: 1em;
+            padding: 10px;
+            margin: 10px 0;
+            width: 300px;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        #result {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="../html/scrach.html">Disneyland Website</a>
+    <h1>Disneyland Riddle Generator Game</h1>
+    <p id="riddle"></p>
+    <input type="text" id="answer" placeholder="Enter your answer here...">
+    <button onclick="checkAnswer()">Submit</button>
+    <button onclick="generateRiddle()">New Riddle</button>
+    <p id="result"></p>
+
+    <script>
+        const riddles = [
+            { question: "I am a magical place where dreams come true. You might meet a mouse here. What am I?", answer: "disneyland" },
+            { question: "I take you through the galaxy, fast and bright,In this indoor coaster, you’ll feel the flight. What am I?", answer: "space mountain" },
+            { question: "I feature a ghostly ballroom and hitchhiking ghosts. What am I?", answer: "haunted mansion" },
+            { question: "I'm the wildest ride in the wilderness", answer: "big thunder mountain" },
+            { question: "Countries, dolls, and boatrides grand. You'll definitely see people waving thier hand. What ride is this?", answer: "it's a small world" },
+            {question: "Snakes and spiders in the dark, A rolling boulder makes its mark. Hold on tight and face your fears, Adventure waits with daring jeers. What ride am I?", answer: "indiana jones"}
+        ];
+
+        let currentRiddle = {};
+
+        function generateRiddle() {
+            const randomIndex = Math.floor(Math.random() * riddles.length);
+            currentRiddle = riddles[randomIndex];
+            document.getElementById('riddle').textContent = currentRiddle.question;
+            document.getElementById('answer').value = "";
+            document.getElementById('result').textContent = "";
+        }
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const resultElement = document.getElementById('result');
+
+            if (userAnswer === currentRiddle.answer) {
+                resultElement.textContent = "Correct! Great job! 🎉";
+                resultElement.style.color = "green";
+            } else {
+                resultElement.textContent = "Oops! That's not right. Try again!";
+                resultElement.style.color = "red";
+            }
+        }
+
+        // Initialize the first riddle
+        generateRiddle();
+    </script>
+    <br><br>
+    <img src="Images/MickeyDisney.jpeg" alt="mickeymouse">
+</body>
+</html>
